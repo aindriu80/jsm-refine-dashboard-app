@@ -1,13 +1,6 @@
-# sad-baths-smash
+# jsm-refine-dashboard-app
 
-<div align="center" style="margin: 30px;">
-    <a href="https://refine.dev">
-    <img alt="refine logo" src="https://refine.ams3.cdn.digitaloceanspaces.com/readme/refine-readme-banner.png">
-    </a>
-</div>
-<br/>
-
-This [Refine](https://github.com/refinedev/refine) project was generated with [create refine-app](https://github.com/refinedev/refine/tree/master/packages/create-refine-app).
+This [Refine ](https://github.com/refinedev/refine) (jsm-refine-dashboard-app) was generated with [create refine-app](https://github.com/refinedev/refine/tree/master/packages/create-refine-app).
 
 ## Getting Started
 
@@ -47,4 +40,4 @@ To learn more about **Refine**, please check out the [Documentation](https://ref
 
 ## License
 
-MIT
+[MIT Licence](https://mit-license.org/)

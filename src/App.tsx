@@ -5,10 +5,12 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import { dataProvider, liveProvider } from "./providers";
+import { authProvider, dataProvider, liveProvider } from "./providers";
 
 import { App as AntdApp } from "antd";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import { Home, ForgotPassword, Login, Register } from "./pages";
 
 import routerBindings, {
   UnsavedChangesNotifier,
@@ -38,6 +40,7 @@ function App() {
               notificationProvider={useNotificationProvider}
               routerProvider={routerBindings}
               i18nProvider={i18nProvider}
+              authProvider={authProvider}
               options={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
@@ -48,6 +51,10 @@ function App() {
             >
               <Routes>
                 <Route index element={<WelcomePage />} />
+                <Route index element={<Home />} />
+                <Route path="/register" element={<ForgotPassword />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
               </Routes>
               <RefineKbar />
               <UnsavedChangesNotifier />

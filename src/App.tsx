@@ -1,5 +1,5 @@
-import { Refine, GitHubBanner, Authenticated } from "@refinedev/core";
-import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
+import { Refine, Authenticated } from "@refinedev/core";
+import { DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
@@ -19,6 +19,7 @@ import routerBindings, {
 
 import { useTranslation } from "react-i18next";
 import Layout from "./components/layout";
+import { resources } from "./config/resources";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -31,7 +32,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         <AntdApp>
           <DevtoolsProvider>
@@ -42,6 +42,7 @@ function App() {
               routerProvider={routerBindings}
               i18nProvider={i18nProvider}
               authProvider={authProvider}
+              resources={resources}
               options={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
@@ -73,7 +74,6 @@ function App() {
               <UnsavedChangesNotifier />
               <DocumentTitleHandler />
             </Refine>
-            <DevtoolsPanel />
           </DevtoolsProvider>
         </AntdApp>
       </RefineKbarProvider>

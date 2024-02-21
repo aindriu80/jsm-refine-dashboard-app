@@ -1,12 +1,37 @@
 import { getDate } from "@/utilities/helpers";
 import { CalendarOutlined } from "@ant-design/icons";
+import { useList } from "@refinedev/core";
 import { Card, List } from "antd";
 import { useState } from "react";
 import UpcomingEventsSkeleton from "../skeleton/upcoming-events";
 import { Text } from "../text";
+import { DASHBORAD_CALENDAR_UPCOMING_EVENTS_QUERY } from "@/graphql/queries";
+import dayjs from "dayjs";
 
 const UpcomingEvents = () => {
   const [isLoading, setIsLoading] = useState(false);
+
+  const { data, isLoading: eventsLoading } = useList({
+    resource: "events",
+    pagination: { pageSize: 5 },
+    sorters: [
+      {
+        field: "startDate",
+        order: "asc",
+      },
+    ],
+    filters: [
+      {
+        field: "startDate",
+        operator: "gte",
+        value: dayjs().format("DD-MM-YYYY"),
+      },
+    ],
+    meta: {
+      gqlQuery: DASHBORAD_CALENDAR_UPCOMING_EVENTS_QUERY,
+    },
+  });
+
   return (
     <Card
       style={{ height: "100%" }}
@@ -32,7 +57,7 @@ const UpcomingEvents = () => {
       ) : (
         <List
           itemLayout="horizontal"
-          dataSource={[]}
+          dataSource={data?.data || []}
           renderItem={(item) => {
             const renderDate = getDate(item.startDate, item.endDate);
             return (
@@ -50,6 +75,19 @@ const UpcomingEvents = () => {
             );
           }}
         ></List>
+      )}
+
+      {!isLoading && data?.data.length === 0 && (
+        <span
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "220p",
+          }}
+        >
+          No Upcoming Events
+        </span>
       )}
     </Card>
   );

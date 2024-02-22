@@ -1,17 +1,14 @@
 import { getDate } from "@/utilities/helpers";
 import { CalendarOutlined } from "@ant-design/icons";
 import { useList } from "@refinedev/core";
-import { Card, List } from "antd";
-import { useState } from "react";
+import { Badge, Card, List } from "antd";
 import UpcomingEventsSkeleton from "../skeleton/upcoming-events";
 import { Text } from "../text";
 import { DASHBORAD_CALENDAR_UPCOMING_EVENTS_QUERY } from "@/graphql/queries";
 import dayjs from "dayjs";
 
 const UpcomingEvents = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const { data, isLoading: eventsLoading } = useList({
+  const { data, isLoading } = useList({
     resource: "events",
     pagination: { pageSize: 5 },
     sorters: [
@@ -24,7 +21,7 @@ const UpcomingEvents = () => {
       {
         field: "startDate",
         operator: "gte",
-        value: dayjs().format("DD-MM-YYYY"),
+        value: dayjs().format("YYYY-MM-DD"),
       },
     ],
     meta: {
@@ -74,7 +71,7 @@ const UpcomingEvents = () => {
               </List.Item>
             );
           }}
-        ></List>
+        />
       )}
 
       {!isLoading && data?.data.length === 0 && (
@@ -83,7 +80,7 @@ const UpcomingEvents = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            height: "220p",
+            height: "220px",
           }}
         >
           No Upcoming Events

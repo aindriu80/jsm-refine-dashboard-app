@@ -38,6 +38,12 @@ dependencies:
   dayjs:
     specifier: ^1.11.10
     version: 1.11.10
+  graphql-tag:
+    specifier: ^2.12.6
+    version: 2.12.6(graphql@16.8.1)
+  graphql-ws:
+    specifier: ^5.9.1
+    version: 5.14.3(graphql@16.8.1)
   i18next:
     specifier: ^20.1.0
     version: 20.6.1

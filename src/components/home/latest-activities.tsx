@@ -1,4 +1,7 @@
-import { DASHBOARD_LATEST_ACTIVITIES_DEALS_QUERY } from "@/graphql/queries";
+import {
+  DASHBOARD_LATEST_ACTIVITIES_AUDITS_QUERY,
+  DASHBOARD_LATEST_ACTIVITIES_DEALS_QUERY,
+} from "@/graphql/queries";
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { useList } from "@refinedev/core";
 import { Card, List } from "antd";
@@ -6,7 +9,7 @@ import dayjs from "dayjs";
 import LatestActivitiesSkeleton from "../skeleton/latest-activities";
 import { Text } from "../text";
 
-const DashboardLatestActivities = () => {
+const LatestActivities = () => {
   const {
     data: audit,
     isLoading: isLoadingAudit,
@@ -15,9 +18,10 @@ const DashboardLatestActivities = () => {
   } = useList({
     resource: "audits",
     meta: {
-      gqlQuery: DASHBOARD_LATEST_ACTIVITIES_DEALS_QUERY,
+      gqlQuery: DASHBOARD_LATEST_ACTIVITIES_AUDITS_QUERY,
     },
   });
+  console.log("audit: ", audit);
 
   const dealIds = audit?.data?.map((audit) => audit?.targetId);
 
@@ -79,4 +83,4 @@ const DashboardLatestActivities = () => {
   );
 };
 
-export default DashboardLatestActivities;
+export default LatestActivities;

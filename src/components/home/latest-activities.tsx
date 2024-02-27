@@ -38,7 +38,7 @@ const LatestActivities = () => {
   });
 
   if (isError) {
-    console.log("Error");
+    console.log("Error", error);
     return null;
   }
 

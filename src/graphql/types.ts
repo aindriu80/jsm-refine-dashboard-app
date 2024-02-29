@@ -11,6 +11,12 @@ export type UpdateUserMutation = {
   >;
 };
 
+export type UsersSelectQuery = {
+  users: Pick<Types.UserConnection, "totalCount"> & {
+    nodes: Array<Pick<Types.User, "id" | "name" | "avatarUrl">>;
+  };
+};
+
 export type CreateCompanyMutationVariables = Types.Exact<{
   input: Types.CreateOneCompanyInput;
 }>;

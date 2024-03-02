@@ -27,6 +27,17 @@ export type CreateCompanyMutation = {
   };
 };
 
+export type CompanyContactsTableQuery = {
+  contacts: Pick<Types.ContactConnection, "totalCount"> & {
+    nodes: Array<
+      Pick<
+        Types.Contact,
+        "id" | "name" | "avatarUrl" | "jobTitle" | "email" | "phone" | "status"
+      >
+    >;
+  };
+};
+
 export type UpdateCompanyMutationVariables = Types.Exact<{
   input: Types.UpdateOneCompanyInput;
 }>;

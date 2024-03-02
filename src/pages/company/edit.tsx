@@ -1,4 +1,4 @@
-import { Col, Form, Row, Select } from "antd";
+import { Col, Form, Input, InputNumber, Row, Select } from "antd";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { UPDATE_COMPANY_MUTATION, USERS_SELECT_QUERY } from "@/graphql/queries";
 import CustomAvatar from "@/components/custom-avatar";
@@ -6,6 +6,12 @@ import { getNameInitials } from "@/utilities";
 import { UsersSelectQuery } from "@/graphql/types";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
 import SelectOptionWithAvatar from "@/components/select-option-with-avatar";
+import {
+  businessTypeOptions,
+  companySizeOptions,
+  industryOptions,
+} from "@/constants";
+import { CompanyContactsTable } from "./contacts-table";
 
 const EditPage = () => {
   const { saveButtonProps, formProps, formLoading, queryResult } = useForm({
@@ -22,6 +28,9 @@ const EditPage = () => {
   >({
     resource: "users",
     optionLabel: "name",
+    pagination: {
+      mode: "off",
+    },
     meta: {
       gqlQuery: USERS_SELECT_QUERY,
     },
@@ -64,7 +73,35 @@ const EditPage = () => {
                 }
               />
             </Form.Item>
+
+            <Form.Item>
+              <Select options={companySizeOptions} />
+            </Form.Item>
+
+            <Form.Item>
+              <InputNumber
+                autoFocus
+                addonBefore="$"
+                min={0}
+                placeholder="0,00"
+              />
+            </Form.Item>
+            <Form.Item label="Industry">
+              <Select options={industryOptions} />
+            </Form.Item>
+            <Form.Item label="Business Type">
+              <Select options={businessTypeOptions} />
+            </Form.Item>
+            <Form.Item label="Country" name="country">
+              <Input placeholder="Country" />
+            </Form.Item>
+            <Form.Item label="Website" name="website">
+              <Input placeholder="website" />
+            </Form.Item>
           </Form>
+        </Col>
+        <Col xs={24} xl={24}>
+          <CompanyContactsTable />
         </Col>
       </Row>
     </div>

@@ -38,6 +38,12 @@ export type CompanyContactsTableQuery = {
   };
 };
 
+export type TaskStagesSelectQuery = {
+  taskStages: Pick<Types.TaskStageConnection, "totalCount"> & {
+    nodes: Array<Pick<Types.TaskStage, "id" | "title">>;
+  };
+};
+
 export type UpdateCompanyMutationVariables = Types.Exact<{
   input: Types.UpdateOneCompanyInput;
 }>;
